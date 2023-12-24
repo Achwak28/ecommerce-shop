@@ -11,7 +11,7 @@ import {
   Card,
 } from "react-bootstrap";
 import { FaTrash } from "react-icons/fa";
-import Message from "../componenets/Message";
+import Message from "../components/Message";
 import { addToCart, removeFromCart } from "../slices/cartSlice";
 
 const CartScreen = () => {

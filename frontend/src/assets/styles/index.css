@@ -51,3 +51,13 @@ table th {
   bottom: 0;
   background: rgba(0, 0, 0, 0.5);
 }
+.logo{
+  font-weight: bolder !important;
+}
+.logo span{
+  font-style: italic;
+    margin-right: 3px;
+    margin-left: 2px;
+    color: #ffffff;
+    font-size: xx-large;
+}

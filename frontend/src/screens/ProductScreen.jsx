@@ -3,10 +3,10 @@ import { useState } from 'react';
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { Row, Col, Image, ListGroup, Card, Button, Form } from "react-bootstrap";
-import Rating from "../componenets/Rating";
+import Rating from "../components/Rating";
 import { useGetProductDetailsQuery } from "../slices/productApiSlice";
-import Loader from "../componenets/Loader";
-import Message from "../componenets/Message"
+import Loader from "../components/Loader";
+import Message from "../components/Message"
 import { addToCart } from '../slices/cartSlice';
 
 const ProductScreen = () => {
