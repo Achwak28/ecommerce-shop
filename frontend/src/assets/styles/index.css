@@ -22,6 +22,10 @@ main {
   text-overflow: ellipsis; /* Add ellipsis for long text */
   white-space: nowrap; /* Prevent wrapping */
 }
+.product-image {
+ height:203 !important ;
+ width: 255 !important;
+}
 
 table td,
 table th {
