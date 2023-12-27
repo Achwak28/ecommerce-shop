@@ -8,8 +8,8 @@ import { toast } from 'react-toastify';
 import {
   useGetProductDetailsQuery,
   useUpdateProductMutation,
+  useUploadProductImageMutation,
 } from '../../slices/productApiSlice';
-//  useUploadProductImageMutation,
 
 const ProductEditScreen = () => {
   const { id: productId } = useParams();
@@ -32,8 +32,8 @@ const ProductEditScreen = () => {
   const [updateProduct, { isLoading: loadingUpdate }] =
     useUpdateProductMutation();
 
-  /*const [uploadProductImage, { isLoading: loadingUpload }] =
-    useUploadProductImageMutation();*/
+  const [uploadProductImage, { isLoading: loadingUpload }] =
+    useUploadProductImageMutation();
 
   const navigate = useNavigate();
 
@@ -69,7 +69,7 @@ const ProductEditScreen = () => {
       setDescription(product.description);
     }
   }, [product]);
-/*
+
   const uploadFileHandler = async (e) => {
     const formData = new FormData();
     formData.append('image', e.target.files[0]);
@@ -80,10 +80,10 @@ const ProductEditScreen = () => {
     } catch (err) {
       toast.error(err?.data?.message || err.error);
     }
-  };*/
+  };
 
   return (
-    <>
+    <> 
       <Link to='/admin/productlist' className='btn btn-light my-3'>
         Go Back
       </Link>
@@ -126,11 +126,11 @@ const ProductEditScreen = () => {
               ></Form.Control>
               <Form.Control
                 label='Choose File'
-                
+                onChange={uploadFileHandler}
                 type='file'
               ></Form.Control>
-              {/*onChange={uploadFileHandler}*/}
-              {/*loadingUpload && <Loader />*/}
+              
+              {loadingUpload && <Loader />}
             </Form.Group>
 
             <Form.Group controlId='brand'>
