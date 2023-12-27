@@ -69,39 +69,52 @@ const getOrderById = asyncHandler(async (req, res) => {
 //route PUT /api/orders/:id/pay
 //access Private
 const updateOrderToPaid = asyncHandler(async (req, res) => {
-  const order = await Order.findById(req.params.id)
+  const order = await Order.findById(req.params.id);
 
-  if(order){
-    order.isPaid = true
-    order.paidAt = Date.now()
+  if (order) {
+    order.isPaid = true;
+    order.paidAt = Date.now();
     order.paymentResult = {
       id: req.body.id,
       status: req.body.status,
-      update_date : req.body.update_date,
-      email_address : req.body.payer.email_address,    
-    }
+      update_date: req.body.update_date,
+      email_address: req.body.payer.email_address,
+    };
 
-    const updateOrder = order.save()
-    res.status(200).json(updateOrder)
-  } else{
-    req.status(400)
-    throw new Error('Something went wrong! Try again')
+    const updateOrder = order.save();
+    res.status(200).json(updateOrder);
+  } else {
+    req.status(400);
+    throw new Error("Something went wrong! Try again");
   }
-});
-
+});  
+  
 // description update order to delivered
 //route PUT /api/orders/:id/deliver
 //access Private/admin
 const updateOrderToDelivered = asyncHandler(async (req, res) => {
-  res.json("update order to delivered");
-});
+  const order = await Order.findById(req.params.id);
 
+  if (order) {
+    order.isDelivered = true;
+    order.deliveredAt = Date.now();
+
+    const updatedOrder = await order.save();
+
+    res.json(updatedOrder);
+  } else {
+    res.status(404);
+    throw new Error('Order not found');
+  }
+});
 // description get all orders
 //route GET /api/orders
 //access Private/admin
 const getOrders = asyncHandler(async (req, res) => {
-  res.json("get all orders");
+  const orders = await Order.find({}).populate('user', 'id name');
+  res.json(orders);
 });
+ 
 export {
   addOrderItems,
   getMyOrders,

@@ -1,10 +1,10 @@
-import React from "react";
 import { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import Loader from "../components/Loader"
+import Loader from '../components/Loader';
 import FormContainer from '../components/FormContainer';
+
 import { useLoginMutation } from '../slices/usersApiSlice';
 import { setCredentials } from '../slices/authSlice';
 import { toast } from 'react-toastify';
@@ -43,14 +43,14 @@ const LoginScreen = () => {
 
   return (
     <FormContainer>
-      <h1>Log In</h1>
+      <h1>Sign In</h1>
 
       <Form onSubmit={submitHandler}>
         <Form.Group className='my-2' controlId='email'>
           <Form.Label>Email Address</Form.Label>
           <Form.Control
             type='email'
-            placeholder='Enter Your email'
+            placeholder='Enter email'
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           ></Form.Control>
@@ -67,7 +67,7 @@ const LoginScreen = () => {
         </Form.Group>
 
         <Button disabled={isLoading} type='submit' variant='primary'>
-          Login
+          Sign In
         </Button>
 
         {isLoading && <Loader />}
@@ -77,7 +77,7 @@ const LoginScreen = () => {
         <Col>
           New Customer?{' '}
           <Link to={redirect ? `/register?redirect=${redirect}` : '/register'}>
-            Create an account.
+            Register
           </Link>
         </Col>
       </Row>
