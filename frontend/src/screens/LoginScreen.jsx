@@ -76,7 +76,7 @@ const LoginScreen = () => {
       <Row className='py-3'>
         <Col>
           New Customer?{' '}
-          <Link to={redirect ? `/register?redirect=${redirect}` : '/register'}>
+          <Link style={{color:"#00537A"}} to={redirect ? `/register?redirect=${redirect}` : '/register'}>
             Register
           </Link>
         </Col>

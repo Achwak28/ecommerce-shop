@@ -26,9 +26,6 @@ app.use(express.urlencoded({ extended : true}))
 // so we can access req.cookies
 app.use(cookieParser())
 
-app.get('/',(req,res) => {
-    res.send('API IS RUNNING...')
-})
  
 app.use('/api/products', productRoutes)
 app.use('/api/users', userRoutes)
@@ -40,6 +37,23 @@ app.get('/api/config/paypal', (req,res) =>  res.send({ clientId: process.env.PAY
 // set dirname to current directory
 const __dirname = path.resolve();
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
+ 
+if (process.env.NODE_ENV === 'production') {
+    const __dirname = path.resolve();
+    app.use('/uploads', express.static('/var/data/uploads'));
+    app.use(express.static(path.join(__dirname, '/frontend/build')));
+  
+    app.get('*', (req, res) =>
+      res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'))
+    );
+  } else {
+    const __dirname = path.resolve();
+    app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
+    app.get('/', (req, res) => {
+      res.send('API is running....');
+    });
+  }
+  
 
 app.use(notFound)
 app.use(errorHandler)

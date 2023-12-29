@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 //import 'bootstrap/dist/css/bootstrap.min.css'
 import "./assets/styles/bootstrap.custom.css";
 import "./assets/styles/index.css";
-import {
+import { 
   createBrowserRouter,
   createRoutesFromElements,
   Route,
@@ -79,7 +79,7 @@ root.render(
         <PayPalScriptProvider deferLoading={true}>
           <RouterProvider router={router} />
         </PayPalScriptProvider>
-      </Provider>
+      </Provider> 
     </HelmetProvider>
   </React.StrictMode>
 );
